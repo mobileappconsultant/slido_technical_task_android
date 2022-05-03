@@ -6,5 +6,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "CandySpaceStack"
+rootProject.name = "UsersDir"
 include(":app")
