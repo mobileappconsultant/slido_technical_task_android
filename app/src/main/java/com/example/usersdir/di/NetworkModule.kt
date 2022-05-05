@@ -1,6 +1,8 @@
 package com.example.usersdir.di
 
 import com.example.usersdir.data.api.UsersApi
+import com.example.usersdir.data.source.remote.RemoteDataSource
+import com.example.usersdir.data.source.remote.RemoteDataSourceImpl
 import com.example.usersdir.utils.DefaultDispatcherProvider
 import com.example.usersdir.utils.DispatcherProvider
 import com.google.gson.Gson
@@ -79,6 +81,12 @@ open class NetworkModule {
     @Singleton
     fun provideCoroutineDispatcher(): DispatcherProvider {
         return getDispatchers()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(usersApi: UsersApi): RemoteDataSource {
+        return RemoteDataSourceImpl(usersApi)
     }
 
     companion object {

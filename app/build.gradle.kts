@@ -105,7 +105,10 @@ dependencies {
     implementation(Retrofit.logging)
 
     implementation(Compose.coil)
-    implementation(Compose.paging)
+
+    implementation(Room.room)
+    implementation(Room.roomKtx)
+    kapt(Room.roomKapt)
 }
 
 jacoco {
