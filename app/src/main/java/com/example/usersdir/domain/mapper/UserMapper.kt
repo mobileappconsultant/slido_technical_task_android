@@ -25,4 +25,14 @@ class UserMapper @Inject constructor() {
             status = entity.status
         )
     }
+
+    fun mapToEntity(user: User): UserEntity {
+        return UserEntity(
+            email = user.email,
+            gender = user.gender,
+            id = user.id,
+            name = user.name,
+            status = user.status
+        )
+    }
 }

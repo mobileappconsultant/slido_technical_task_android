@@ -2,3 +2,4 @@
 /buildSrc/build/
 /.gradle/
 /.idea/sonarlint/
+/.idea/sonarIssues.xml

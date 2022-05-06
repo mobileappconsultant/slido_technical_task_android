@@ -1,4 +1,3 @@
 package com.example.usersdir.ui.navigation
 
-sealed class Routes(val route: String) {
-}
+sealed class Routes(val route: String)
