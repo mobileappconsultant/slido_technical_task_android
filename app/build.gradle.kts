@@ -1,3 +1,8 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
+val apiKey: String =
+    gradleLocalProperties(rootDir).getOrDefault("apiKey", "\"default-key\"") as String
+
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
@@ -33,6 +38,11 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            buildConfigField("String", "apiKey", apiKey)
+        }
+
+        getByName("debug") {
+            buildConfigField("String", "apiKey", apiKey)
         }
     }
     packagingOptions {

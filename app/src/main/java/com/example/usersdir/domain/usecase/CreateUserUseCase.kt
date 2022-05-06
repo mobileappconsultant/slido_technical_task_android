@@ -1,14 +1,12 @@
 package com.example.usersdir.domain.usecase
 
 import com.example.usersdir.data.api.request.UserRequest
-import com.example.usersdir.data.source.local.LocalDataSource
-import com.example.usersdir.data.source.remote.RemoteDataSource
+import com.example.usersdir.data.repository.UserRepository
 import com.example.usersdir.domain.mapper.UserMapper
 import javax.inject.Inject
 
 class CreateUserUseCase @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource,
+    private val userRepository: UserRepository,
     private val userMapper: UserMapper
 ) {
     suspend fun execute(
@@ -23,8 +21,8 @@ class CreateUserUseCase @Inject constructor(
             name = name,
             status = status
         )
-        val user = userMapper.mapToUser(remoteDataSource.createUser(request))
+        val user = userRepository.createUser(request)
 
-        localDataSource.insertUsers(listOf(userMapper.mapToEntity(user)))
+        userRepository.insertUserToDb(userMapper.mapToEntity(user))
     }
 }

@@ -25,12 +25,16 @@ class UserRepository @Inject constructor(
         remoteDataSource.deleteUser(id)
     }
 
-    suspend fun createUser(request: UserRequest) {
-        remoteDataSource.createUser(request)
+    suspend fun createUser(request: UserRequest): User {
+        return mapper.mapToUser(remoteDataSource.createUser(request))
     }
 
-    suspend fun insertUserToDb(userEntities: List<UserEntity>) {
+    suspend fun insertUsersToDb(userEntities: List<UserEntity>) {
         localDataSource.insertUsers(userEntities)
+    }
+
+    suspend fun insertUserToDb(userEntity: UserEntity) {
+        localDataSource.insertUser(userEntity)
     }
 
     fun getUsersFromDb(): Flow<List<User>> {

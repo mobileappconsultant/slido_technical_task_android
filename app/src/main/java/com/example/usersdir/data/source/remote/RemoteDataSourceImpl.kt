@@ -9,5 +9,7 @@ class RemoteDataSourceImpl(private val api: UsersApi) : RemoteDataSource {
 
     override suspend fun createUser(userRequest: UserRequest): UserSchema = api.createRequest(userRequest)
 
-    override suspend fun deleteUser(id: Int) = api.deleteUser(id)
+    override suspend fun deleteUser(id: Int) {
+        api.deleteUser(id)
+    }
 }

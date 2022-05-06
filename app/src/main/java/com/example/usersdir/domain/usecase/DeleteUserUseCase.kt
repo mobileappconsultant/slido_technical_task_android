@@ -1,15 +1,13 @@
 package com.example.usersdir.domain.usecase
 
-import com.example.usersdir.data.source.local.LocalDataSource
-import com.example.usersdir.data.source.remote.RemoteDataSource
+import com.example.usersdir.data.repository.UserRepository
 import javax.inject.Inject
 
 class DeleteUserUseCase @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val userRepository: UserRepository
 ) {
     suspend fun execute(id: Int) {
-        remoteDataSource.deleteUser(id)
-        localDataSource.deleteUser(id)
+        userRepository.deleteUserFromRemote(id)
+        userRepository.deleteUserFromDb(id)
     }
 }
